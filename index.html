@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>'A Locanda 'e Nonna Amalia · Nola</title>
+<meta name="description" content="Cucina napoletana di casa nel centro di Nola. Pasta e patate, genovese, scarpariello, polpette e l'antipasto della nonna. Prenota un tavolo.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,800;1,9..144,400;1,9..144,600&family=Caveat:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --crema:#f6efe3; --crema2:#efe4d1; --carta:#fbf7f0;
+  --pomodoro:#b23a2b; --pomodoro-d:#8e2a1e;
+  --oliva:#4f5b3a; --oro:#c99a4b;
+  --inchiostro:#2a1f1a; --grigio:#6d5f55;
+  --r:18px;
+  --serif:"Fraunces",Georgia,serif; --mano:"Caveat",cursive; --sans:"Inter",system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);color:var(--inchiostro);background:var(--crema);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{display:block;max-width:100%}
+a{color:inherit}
+.wrap{width:min(1180px,92vw);margin:0 auto}
+.mano{font-family:var(--mano);color:var(--pomodoro);font-size:1.6rem;line-height:1.1}
+h1,h2,h3{font-family:var(--serif);font-weight:600;line-height:1.08;letter-spacing:-.01em}
+h2{font-size:clamp(2rem,4.6vw,3.4rem)}
+.eyebrow{font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;font-weight:600;color:var(--oliva)}
+.btn{display:inline-flex;align-items:center;gap:.55rem;padding:.95rem 1.5rem;border-radius:999px;font-weight:600;text-decoration:none;border:0;cursor:pointer;font-size:1rem;transition:transform .25s,box-shadow .25s,background .25s}
+.btn:hover{transform:translateY(-2px)}
+.btn-rosso{background:var(--pomodoro);color:#fff;box-shadow:0 10px 30px -10px rgba(178,58,43,.7)}
+.btn-rosso:hover{background:var(--pomodoro-d)}
+.btn-chiaro{background:rgba(255,255,255,.14);color:#fff;border:1px solid rgba(255,255,255,.45);backdrop-filter:blur(6px)}
+.btn-scuro{background:var(--inchiostro);color:#fff}
+.btn svg{width:18px;height:18px}
+
+/* demo ribbon */
+.demo{background:var(--inchiostro);color:#f3e7d3;text-align:center;font-size:.8rem;padding:.45rem 1rem;letter-spacing:.02em}
+.demo b{color:var(--oro)}
+
+/* nav */
+header.nav{position:sticky;top:0;z-index:50;transition:background .3s,box-shadow .3s}
+header.nav:not(.solid):not(.open){color:#fff}
+header.nav:not(.solid):not(.open) .logo .t small{color:rgba(255,255,255,.75)}
+header.nav:not(.solid):not(.open) .burger span{background:#fff}
+header.nav.solid{background:rgba(246,239,227,.92);backdrop-filter:blur(10px);box-shadow:0 1px 0 rgba(42,31,26,.08)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;height:72px}
+.logo{display:flex;align-items:center;gap:.7rem;text-decoration:none}
+.logo .mark{width:44px;height:44px;border-radius:50%;background:var(--pomodoro);color:#fff;display:grid;place-items:center;font-family:var(--mano);font-size:1.7rem;font-weight:700;box-shadow:inset 0 0 0 3px var(--crema),0 0 0 2px var(--pomodoro)}
+.logo .t{font-family:var(--serif);font-weight:600;font-size:1.05rem;line-height:1.05}
+.logo .t small{display:block;font-family:var(--sans);font-weight:500;font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--grigio)}
+.nav ul{display:flex;gap:1.8rem;list-style:none;font-weight:500;font-size:.95rem}
+.nav ul a{text-decoration:none;position:relative}
+.nav ul a::after{content:"";position:absolute;left:0;bottom:-4px;height:2px;width:0;background:var(--pomodoro);transition:width .3s}
+.nav ul a:hover::after{width:100%}
+.nav .btn{padding:.65rem 1.15rem;font-size:.92rem}
+.burger{display:none;background:none;border:0;width:44px;height:44px;cursor:pointer}
+.burger span{display:block;width:24px;height:2px;background:var(--inchiostro);margin:5px auto;transition:.3s}
+@media (max-width:900px){
+  .nav ul,.nav .desk{display:none}
+  .burger{display:block}
+  .nav.open{background:var(--crema)}
+  .nav.open ul{display:flex;flex-direction:column;position:absolute;top:72px;left:0;right:0;background:var(--crema);padding:1.2rem 4vw 1.6rem;gap:1.1rem;font-size:1.15rem;box-shadow:0 20px 30px -20px rgba(0,0,0,.25)}
+}
+
+/* hero */
+.hero{position:relative;min-height:calc(100svh - 100px);display:flex;align-items:flex-end;color:#fff;overflow:hidden;margin-top:-72px;padding-top:72px}
+.hero .bg{position:absolute;inset:-6% 0 0;background:url(img/hero.webp) center/cover;transform:scale(1.08);animation:zoom 18s ease-out forwards;will-change:transform}
+@keyframes zoom{to{transform:scale(1)}}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,12,8,.55) 0%,rgba(20,12,8,.15) 35%,rgba(20,12,8,.85) 100%)}
+.hero .wrap{position:relative;z-index:2;padding:0 0 clamp(2.5rem,7vh,5rem)}
+.hero .mano{color:#f6d48f;font-size:clamp(1.7rem,3.4vw,2.4rem)}
+.hero h1{font-size:clamp(2.8rem,8.4vw,6.6rem);font-weight:600;max-width:13ch;margin:.3rem 0 1rem}
+.hero h1 em{font-style:italic;font-weight:400;color:#f6d48f}
+.hero p.lead{max-width:540px;font-size:clamp(1.02rem,1.6vw,1.2rem);opacity:.92}
+.hero .cta{display:flex;flex-wrap:wrap;gap:.8rem;margin:1.8rem 0 2.2rem}
+.badges{display:flex;flex-wrap:wrap;gap:.6rem}
+.badge{display:flex;align-items:center;gap:.5rem;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.25);backdrop-filter:blur(8px);padding:.5rem .9rem;border-radius:12px;font-size:.88rem}
+.badge b{font-family:var(--serif);font-size:1.15rem}
+.stars{color:#f6c35c;letter-spacing:1px}
+.steam{position:absolute;right:8%;top:22%;width:120px;opacity:.5;z-index:2}
+.steam path{fill:none;stroke:#fff;stroke-width:2;stroke-linecap:round;animation:steam 4s ease-in-out infinite}
+.steam path:nth-child(2){animation-delay:1.3s}.steam path:nth-child(3){animation-delay:2.6s}
+@keyframes steam{0%{opacity:0;transform:translateY(20px)}40%{opacity:.9}100%{opacity:0;transform:translateY(-30px)}}
+@media (max-width:700px){.steam{display:none}}
+
+/* marquee */
+.marquee{background:var(--pomodoro);color:#fff;overflow:hidden;white-space:nowrap;padding:1rem 0;border-block:3px solid var(--inchiostro)}
+.marquee .track{display:inline-flex;gap:2.4rem;animation:scroll 38s linear infinite;font-family:var(--serif);font-size:1.35rem;font-style:italic}
+.marquee span::after{content:"✦";margin-left:2.4rem;font-style:normal;color:#f6d48f;font-size:.9rem;vertical-align:middle}
+@keyframes scroll{to{transform:translateX(-50%)}}
+
+section{padding:clamp(4.5rem,10vw,8rem) 0}
+
+/* storia */
+.storia .grid{display:grid;grid-template-columns:1.05fr 1fr;gap:clamp(2rem,6vw,5rem);align-items:center}
+.storia .foto{position:relative;height:clamp(420px,62vw,620px)}
+.storia .foto img{position:absolute;object-fit:cover;border-radius:var(--r);box-shadow:0 30px 60px -30px rgba(42,31,26,.55)}
+.storia .f1{width:68%;height:82%;left:0;top:0}
+.storia .f2{width:52%;height:58%;right:0;bottom:0;border:8px solid var(--crema)}
+.storia .bollo{position:absolute;left:52%;top:6%;width:118px;height:118px;border-radius:50%;background:var(--oro);color:var(--inchiostro);display:grid;place-items:center;text-align:center;font-family:var(--mano);font-size:1.35rem;line-height:1;transform:rotate(-10deg);box-shadow:0 12px 30px -10px rgba(0,0,0,.4);animation:spin 26s linear infinite}
+@keyframes spin{to{transform:rotate(350deg)}}
+.storia h2{margin:.6rem 0 1.3rem}
+.storia p{color:var(--grigio);font-size:1.07rem;margin-bottom:1rem}
+.pilastri{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:2rem}
+.pilastro{background:var(--carta);border-radius:14px;padding:1.1rem;border:1px solid rgba(42,31,26,.08)}
+.pilastro b{font-family:var(--serif);font-size:1.1rem;display:block;margin-bottom:.2rem}
+.pilastro span{font-size:.88rem;color:var(--grigio)}
+@media (max-width:900px){.storia .grid{grid-template-columns:1fr}.pilastri{grid-template-columns:1fr}}
+
+/* antipasto feature */
+.feature{background:var(--inchiostro);color:var(--crema);position:relative;overflow:hidden}
+.feature::before{content:"";position:absolute;inset:0;opacity:.06;background-image:linear-gradient(45deg,#fff 25%,transparent 25%,transparent 75%,#fff 75%),linear-gradient(45deg,#fff 25%,transparent 25%,transparent 75%,#fff 75%);background-size:44px 44px;background-position:0 0,22px 22px}
+.feature .grid{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,6vw,5rem);align-items:center}
+.feature .img3d{perspective:1000px}
+.feature .img3d img{border-radius:var(--r);transform:rotateY(-10deg) rotateX(4deg);transition:transform .2s ease-out;box-shadow:30px 40px 70px -30px rgba(0,0,0,.8)}
+.feature .eyebrow{color:var(--oro)}
+.feature h2{margin:.5rem 0 1rem}
+.feature h2 em{color:#f6d48f;font-weight:400}
+.feature p{opacity:.85;font-size:1.07rem;margin-bottom:1.4rem}
+.prezzo{display:flex;align-items:baseline;gap:.6rem;margin-bottom:1.8rem}
+.prezzo b{font-family:var(--serif);font-size:3rem;color:#f6d48f}
+.prezzo span{opacity:.75}
+@media (max-width:900px){.feature .grid{grid-template-columns:1fr}}
+
+/* menu */
+.menu .head{display:flex;justify-content:space-between;align-items:flex-end;gap:2rem;flex-wrap:wrap;margin-bottom:2.4rem}
+.menu .head p{max-width:440px;color:var(--grigio)}
+.tabs{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:2rem}
+.tab{background:transparent;border:1.5px solid var(--inchiostro);padding:.6rem 1.2rem;border-radius:999px;font:600 .95rem var(--sans);cursor:pointer;color:var(--inchiostro);transition:.25s}
+.tab[aria-selected="true"]{background:var(--inchiostro);color:var(--crema)}
+.pannello{display:none;grid-template-columns:1fr 1fr;gap:0 3.5rem}
+.pannello.on{display:grid;animation:fade .5s}
+@keyframes fade{from{opacity:0;transform:translateY(12px)}}
+.piatto{padding:1.25rem 0;border-bottom:1px dashed rgba(42,31,26,.25)}
+.piatto .r{display:flex;justify-content:space-between;gap:1rem;align-items:baseline}
+.piatto h3{font-size:1.32rem}
+.piatto .tag{font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;font-weight:600;color:var(--pomodoro);white-space:nowrap}
+.piatto p{color:var(--grigio);font-size:.96rem;margin-top:.25rem}
+.nota-menu{margin-top:2rem;font-size:.85rem;color:var(--grigio);background:var(--crema2);padding:.9rem 1.1rem;border-radius:12px;border-left:4px solid var(--oro)}
+@media (max-width:800px){.pannello{grid-template-columns:1fr}}
+
+/* galleria */
+.galleria{padding-top:0}
+.scroller{display:flex;gap:1rem;overflow-x:auto;scroll-snap-type:x mandatory;padding:0 4vw 1rem;scrollbar-width:none}
+.scroller::-webkit-scrollbar{display:none}
+.scroller figure{flex:0 0 clamp(260px,34vw,440px);scroll-snap-align:center;position:relative;min-width:0}
+.scroller img{width:100%;height:clamp(320px,40vw,480px);object-fit:cover;border-radius:var(--r)}
+.scroller figcaption{position:absolute;left:1rem;bottom:1rem;color:#fff;font-family:var(--mano);font-size:1.6rem;text-shadow:0 2px 12px rgba(0,0,0,.6)}
+.gal-ctrl{display:flex;justify-content:space-between;align-items:center;margin-top:1rem}
+.gal-ctrl small{color:var(--grigio)}
+.gal-ctrl .frecce{display:flex;gap:.5rem}
+.freccia{width:46px;height:46px;border-radius:50%;border:1.5px solid var(--inchiostro);background:none;cursor:pointer;font-size:1.2rem}
+.freccia:hover{background:var(--inchiostro);color:var(--crema)}
+
+/* recensioni */
+.recensioni{background:var(--carta)}
+.rec-grid{display:grid;grid-template-columns:1fr 1.4fr;gap:clamp(2rem,6vw,5rem);align-items:start}
+.voti{display:grid;gap:1rem;margin-top:2rem}
+.voto{display:flex;align-items:center;justify-content:space-between;background:var(--crema);border-radius:14px;padding:1.1rem 1.3rem;text-decoration:none;transition:transform .25s}
+.voto:hover{transform:translateX(6px)}
+.voto b{font-family:var(--serif);font-size:2.2rem;line-height:1}
+.voto small{display:block;color:var(--grigio)}
+.temi{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.tema{background:var(--crema);border-radius:16px;padding:1.4rem;position:relative}
+.tema .ico{font-size:1.6rem}
+.tema h3{font-size:1.2rem;margin:.4rem 0 .3rem}
+.tema p{font-size:.93rem;color:var(--grigio)}
+.rec-nota{grid-column:1/-1;font-size:.82rem;color:var(--grigio)}
+@media (max-width:900px){.rec-grid{grid-template-columns:1fr}.temi{grid-template-columns:1fr}}
+
+/* orari */
+.orari .grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,6vw,5rem)}
+.tabella{margin-top:1.6rem;border-top:1px solid rgba(42,31,26,.15)}
+.riga{display:flex;justify-content:space-between;padding:.85rem .4rem;border-bottom:1px solid rgba(42,31,26,.15);font-size:1.02rem}
+.riga.oggi{background:var(--crema2);font-weight:600;border-radius:8px}
+.riga.oggi .g::after{content:" · oggi";color:var(--pomodoro);font-weight:600}
+.riga .chiuso{color:var(--pomodoro)}
+.stato{display:inline-flex;align-items:center;gap:.5rem;margin-top:1.2rem;font-weight:600}
+.stato i{width:10px;height:10px;border-radius:50%;background:#999}
+.stato.aperto i{background:#3c9a4b;box-shadow:0 0 0 4px rgba(60,154,75,.2)}
+.dove{background:var(--inchiostro);color:var(--crema);border-radius:24px;padding:clamp(1.6rem,4vw,2.6rem);position:relative;overflow:hidden}
+.mappa{height:220px;border-radius:16px;margin-bottom:1.6rem;background:
+  radial-gradient(circle at 50% 50%,var(--pomodoro) 0 9px,transparent 10px),
+  radial-gradient(circle at 50% 50%,rgba(178,58,43,.3) 0 26px,transparent 27px),
+  linear-gradient(90deg,transparent 48%,rgba(246,239,227,.18) 48% 52%,transparent 52%),
+  linear-gradient(0deg,transparent 30%,rgba(246,239,227,.14) 30% 33%,transparent 33%),
+  linear-gradient(28deg,transparent 60%,rgba(246,239,227,.12) 60% 62%,transparent 62%),
+  #3a2c25;display:flex;align-items:flex-end;padding:1rem}
+.mappa span{background:var(--crema);color:var(--inchiostro);padding:.35rem .8rem;border-radius:999px;font-size:.85rem;font-weight:600}
+.dove h3{font-size:1.6rem;margin-bottom:.4rem}
+.dove p{opacity:.85}
+.dove .azioni{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1.4rem}
+.dove .btn-chiaro{border-color:rgba(246,239,227,.4)}
+.mini{font-size:.82rem;opacity:.7;margin-top:1rem}
+@media (max-width:900px){.orari .grid{grid-template-columns:1fr}}
+
+/* prenota */
+.prenota{background:var(--pomodoro);color:#fff;position:relative;overflow:hidden}
+.prenota::before{content:"";position:absolute;inset:0;opacity:.08;background-image:linear-gradient(45deg,#fff 25%,transparent 25%,transparent 75%,#fff 75%),linear-gradient(45deg,#fff 25%,transparent 25%,transparent 75%,#fff 75%);background-size:60px 60px;background-position:0 0,30px 30px}
+.prenota .grid{position:relative;display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(2rem,6vw,5rem);align-items:center}
+.prenota .mano{color:#f6d48f;font-size:2rem}
+.prenota p{opacity:.9;font-size:1.07rem;margin-top:1rem}
+form.card{background:var(--carta);color:var(--inchiostro);border-radius:24px;padding:clamp(1.4rem,4vw,2.4rem);box-shadow:0 40px 80px -40px rgba(0,0,0,.6);display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+form .full{grid-column:1/-1}
+label{font-size:.82rem;font-weight:600;display:block;margin-bottom:.35rem}
+input,select,textarea{width:100%;padding:.85rem 1rem;border:1.5px solid rgba(42,31,26,.18);border-radius:12px;font:inherit;background:#fff;color:inherit}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--pomodoro)}
+textarea{resize:vertical;min-height:80px}
+.err{color:var(--pomodoro);font-size:.85rem;min-height:1.2em}
+.esito{display:none;background:#eef5ea;border:1px solid #b8d3ae;border-radius:14px;padding:1rem 1.1rem;font-size:.93rem}
+.esito.on{display:block}
+.esito a{margin-top:.7rem}
+@media (max-width:900px){.prenota .grid{grid-template-columns:1fr}}
+@media (max-width:520px){form.card{grid-template-columns:1fr}}
+
+/* footer */
+footer{background:var(--inchiostro);color:rgba(246,239,227,.8);padding:4rem 0 2rem;font-size:.92rem}
+footer .grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:2rem}
+footer h4{font-family:var(--serif);color:var(--crema);font-size:1.1rem;margin-bottom:.8rem;font-weight:600}
+footer a{text-decoration:none}
+footer a:hover{color:#f6d48f}
+footer .big{font-family:var(--serif);font-size:clamp(2rem,6vw,3.6rem);color:var(--crema);line-height:1;margin-bottom:1rem}
+footer .big em{font-family:var(--mano);color:#f6d48f;font-style:normal}
+.legal{border-top:1px solid rgba(246,239,227,.15);margin-top:3rem;padding-top:1.4rem;display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;font-size:.8rem;opacity:.7}
+@media (max-width:800px){footer .grid{grid-template-columns:1fr}}
+
+/* sticky mobile cta */
+.mob{display:none}
+@media (max-width:700px){
+  .mob{display:grid;grid-template-columns:1fr 1fr;gap:.5rem;position:fixed;left:.7rem;right:.7rem;bottom:.7rem;z-index:60;transform:translateY(140%);transition:transform .35s}
+  .mob.on{transform:none}
+  .mob .btn{justify-content:center;padding:.85rem}
+  body{padding-bottom:0}
+}
+
+/* reveal */
+.rv{opacity:0;transform:translateY(34px);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1)}
+.rv.in{opacity:1;transform:none}
+.rv.d1{transition-delay:.12s}.rv.d2{transition-delay:.24s}.rv.d3{transition-delay:.36s}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<div class="demo"><b>Anteprima</b> · proposta di sito per 'A Locanda 'e Nonna Amalia · foto illustrative, contenuti da confermare</div>
+
+<header class="nav" id="nav">
+  <div class="wrap">
+    <a class="logo" href="#top" aria-label="'A Locanda 'e Nonna Amalia, inizio pagina">
+      <span class="mark">A</span>
+      <span class="t">'A Locanda 'e Nonna Amalia<small>Cucina napoletana · Nola</small></span>
+    </a>
+    <ul id="menu-nav">
+      <li><a href="#locanda">La locanda</a></li>
+      <li><a href="#piatti">I piatti</a></li>
+      <li><a href="#recensioni">Dicono di noi</a></li>
+      <li><a href="#orari">Orari e dove</a></li>
+    </ul>
+    <a class="btn btn-rosso desk" href="#prenota">Prenota un tavolo</a>
+    <button class="burger" id="burger" aria-label="Apri il menu" aria-expanded="false"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<main id="top">
+<section class="hero" aria-label="Benvenuti">
+  <div class="bg" id="herobg"></div>
+  <svg class="steam" viewBox="0 0 120 140" aria-hidden="true"><path d="M30 130c-12-20 12-30 0-50s12-30 0-50"/><path d="M60 130c-12-20 12-30 0-50s12-30 0-50"/><path d="M90 130c-12-20 12-30 0-50s12-30 0-50"/></svg>
+  <div class="wrap">
+    <div class="mano rv">Trasite, 'a tavola è pronta.</div>
+    <h1 class="rv d1">Cucina di casa, <em>comme 'a faceva 'a nonna.</em></h1>
+    <p class="lead rv d2">Pasta e patate, genovese, polpette al sugo e pane caldo in tavola. Una piccola locanda di famiglia nel centro di Nola, dove si mangia come la domenica a casa.</p>
+    <div class="cta rv d3">
+      <a class="btn btn-rosso" href="#prenota"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 11h18"/></svg>Prenota un tavolo</a>
+      <a class="btn btn-chiaro" href="tel:+393483755778"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>348 375 5778</a>
+    </div>
+    <div class="badges rv d3">
+      <div class="badge"><span class="stars">★★★★★</span><b>4,8</b> su Google</div>
+      <div class="badge"><span class="stars">★★★★★</span><b>4,9</b> su Tripadvisor</div>
+      <div class="badge"><b>#3</b> dei ristoranti di Nola</div>
+    </div>
+  </div>
+</section>
+
+<div class="marquee" aria-hidden="true"><div class="track" id="track">
+  <span>Pasta e patate</span><span>Genovese</span><span>Spaghetti allo scarpariello</span><span>Nerano</span><span>Polpette al sugo</span><span>Lardiata</span><span>Pasta fagioli e cozze</span><span>Fritto napoletano</span><span>Meloncello della casa</span>
+</div></div>
+
+<section class="storia" id="locanda">
+  <div class="wrap grid">
+    <div class="foto rv">
+      <img class="f1" src="img/sala.webp" alt="Sala rustica con archi in pietra e luce calda (foto illustrativa)" loading="lazy">
+      <img class="f2" src="img/cucina.webp" alt="Cuoco che impiatta in cucina (foto illustrativa)" loading="lazy">
+      <div class="bollo">fatto<br>in casa</div>
+    </div>
+    <div>
+      <div class="eyebrow rv">La locanda</div>
+      <h2 class="rv d1">Comme a casa<br>d' 'a nonna.</h2>
+      <p class="rv d2">Appena entri ti sembra di stare nel soggiorno di una nonna napoletana, pronta a farti mangiare. È questo che ci scrivono più spesso gli ospiti, ed è proprio quello che vogliamo essere.</p>
+      <p class="rv d2">A Nola, in via Alberto da Nola, una famiglia porta in tavola le ricette di sempre: porzioni generose, sugo che cuoce piano, il pane servito caldo e, alla fine, un bicchierino di limoncello o meloncello offerto dalla casa.</p>
+      <p class="rv d2 mano" style="font-size:1.45rem">[Qui la storia di Nonna Amalia, raccontata dalla famiglia]</p>
+      <div class="pilastri rv d3">
+        <div class="pilastro"><b>Famiglia</b><span>Una gestione familiare, si sente da come ti accolgono.</span></div>
+        <div class="pilastro"><b>Tradizione</b><span>Solo piatti della cucina napoletana di casa.</span></div>
+        <div class="pilastro"><b>Abbondanza</b><span>Nessuno si alza da tavola con la fame.</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="feature" aria-labelledby="ant-t">
+  <div class="wrap grid">
+    <div class="img3d rv"><img id="tilt" src="img/bruschette.webp" alt="Bruschette con pomodoro e basilico su tagliere (foto illustrativa)" loading="lazy"></div>
+    <div>
+      <div class="eyebrow rv">La specialità della casa</div>
+      <h2 id="ant-t" class="rv d1">L'antipasto<br><em>Nonna Amalia</em></h2>
+      <p class="rv d2">Il modo giusto per cominciare: un giro della cucina della nonna da dividere in due, con le bruschette dello chef, i fritti napoletani e le bontà del giorno. Gli ospiti lo descrivono così: "c'era davvero di tutto".</p>
+      <div class="prezzo rv d2"><b>28 €</b><span>per due persone</span></div>
+      <a class="btn btn-rosso rv d3" href="#prenota">Prenota e assaggialo</a>
+    </div>
+  </div>
+</section>
+
+<section class="menu" id="piatti">
+  <div class="wrap">
+    <div class="head">
+      <div>
+        <div class="eyebrow rv">I piatti</div>
+        <h2 class="rv d1">Quello che ci chiedono<br>di rifare ogni volta.</h2>
+      </div>
+      <p class="rv d2">Una cucina semplice e onesta, che cambia con le stagioni. Qui trovi i piatti più amati dai nostri ospiti.</p>
+    </div>
+    <div class="tabs rv" role="tablist">
+      <button class="tab" role="tab" aria-selected="true" data-p="p1">Antipasti</button>
+      <button class="tab" role="tab" aria-selected="false" data-p="p2">Primi</button>
+      <button class="tab" role="tab" aria-selected="false" data-p="p3">Secondi</button>
+      <button class="tab" role="tab" aria-selected="false" data-p="p4">Dolci e liquori</button>
+    </div>
+
+    <div class="pannello on" id="p1" role="tabpanel">
+      <div class="piatto"><div class="r"><h3>Antipasto Nonna Amalia</h3><span class="tag">Per due · 28 €</span></div><p>Il giro completo della casa, da dividere.</p></div>
+      <div class="piatto"><div class="r"><h3>Bruschette dello chef</h3></div><p>Pane cotto bene e condimenti del giorno.</p></div>
+      <div class="piatto"><div class="r"><h3>Fritto napoletano</h3><span class="tag">Classico</span></div><p>Il cuoppo della tradizione, croccante e caldo.</p></div>
+      <div class="piatto"><div class="r"><h3>Frittura mista</h3></div><p>Da condividere, da prendere sempre.</p></div>
+    </div>
+    <div class="pannello" id="p2" role="tabpanel">
+      <div class="piatto"><div class="r"><h3>Pasta e patate</h3><span class="tag">Il più amato</span></div><p>Cremosa, come la vuole la tradizione. Il piatto che ci chiedono di più.</p></div>
+      <div class="piatto"><div class="r"><h3>Genovese</h3><span class="tag">Classico</span></div><p>Cipolle cotte per ore e carne che si scioglie.</p></div>
+      <div class="piatto"><div class="r"><h3>Spaghetti allo scarpariello</h3></div><p>Pomodorini, formaggio e basilico: il piatto del lunedì dei calzolai napoletani.</p></div>
+      <div class="piatto"><div class="r"><h3>Spaghetti alla Nerano</h3></div><p>Zucchine fritte e provolone, la ricetta della costiera.</p></div>
+      <div class="piatto"><div class="r"><h3>Pasta fagioli e cozze</h3></div><p>Terra e mare nello stesso piatto.</p></div>
+      <div class="piatto"><div class="r"><h3>Lardiata</h3></div><p>Il sugo antico con il lardo, quello delle nonne.</p></div>
+    </div>
+    <div class="pannello" id="p3" role="tabpanel">
+      <div class="piatto"><div class="r"><h3>Polpette al sugo</h3><span class="tag">Da non perdere</span></div><p>"La parte migliore della cena", ci hanno scritto.</p></div>
+      <div class="piatto"><div class="r"><h3>Scottona</h3></div><p>Carne scelta, cotta come si deve.</p></div>
+      <div class="piatto"><div class="r"><h3>Grigliata mista</h3></div><p>Per chi ha ancora fame dopo il primo.</p></div>
+    </div>
+    <div class="pannello" id="p4" role="tabpanel">
+      <div class="piatto"><div class="r"><h3>Ricotta e pera</h3></div><p>Il dolce leggero della Campania.</p></div>
+      <div class="piatto"><div class="r"><h3>Sfogliatella napoletana</h3></div><p>Riccia, croccante, con la ricotta profumata.</p></div>
+      <div class="piatto"><div class="r"><h3>Tiramisù</h3></div><p>Fatto in casa.</p></div>
+      <div class="piatto"><div class="r"><h3>Limoncello e meloncello</h3><span class="tag">Offerti dalla casa</span></div><p>Per chiudere come si deve.</p></div>
+    </div>
+    <div class="nota-menu rv">Anteprima: i piatti sono quelli citati nelle recensioni degli ospiti. Il menu completo, con prezzi e allergeni, si inserisce dal titolare.</div>
+  </div>
+</section>
+
+<section class="galleria" aria-label="Galleria">
+  <div class="scroller" id="scroller">
+    <figure><img src="img/primo.webp" alt="Spaghetti al pomodoro (foto illustrativa)" loading="lazy"><figcaption>'e primi</figcaption></figure>
+    <figure><img src="img/tavolata.webp" alt="Tavolata di amici e famiglia (foto illustrativa)" loading="lazy"><figcaption>'a tavulata</figcaption></figure>
+    <figure><img src="img/scottona.webp" alt="Tagliata di carne (foto illustrativa)" loading="lazy"><figcaption>'a carne</figcaption></figure>
+    <figure><img src="img/servizio.webp" alt="Cameriere che serve i piatti (foto illustrativa)" loading="lazy"><figcaption>'o servizio</figcaption></figure>
+    <figure><img src="img/sera.webp" alt="Cena tra amici con vino (foto illustrativa)" loading="lazy"><figcaption>'a sera</figcaption></figure>
+    <figure><img src="img/hero.webp" alt="Piatto di pasta al sugo (foto illustrativa)" loading="lazy"><figcaption>'o sugo</figcaption></figure>
+  </div>
+  <div class="wrap gal-ctrl">
+    <small>Foto illustrative, da sostituire con quelle della locanda.</small>
+    <div class="frecce"><button class="freccia" id="prev" aria-label="Foto precedente">←</button><button class="freccia" id="next" aria-label="Foto successiva">→</button></div>
+  </div>
+</section>
+
+<section class="recensioni" id="recensioni">
+  <div class="wrap rec-grid">
+    <div>
+      <div class="eyebrow rv">Dicono di noi</div>
+      <h2 class="rv d1">Chi viene,<br>torna.</h2>
+      <div class="voti">
+        <a class="voto rv d1" href="https://www.google.com/maps/search/?api=1&query=A%27%20Locanda%20%27e%20Nonna%20Amalia%20Nola" target="_blank" rel="noopener"><div><b>4,8</b><small>Google · 75 recensioni</small></div><span class="stars">★★★★★</span></a>
+        <a class="voto rv d2" href="https://www.tripadvisor.it/Restaurant_Review-g580205-d34425455-Reviews-A_Locanda_E_Nonna_Amalia-Nola_Province_of_Naples_Campania.html" target="_blank" rel="noopener"><div><b>4,9</b><small>Tripadvisor · n. 3 su 144 a Nola</small></div><span class="stars">★★★★★</span></a>
+      </div>
+    </div>
+    <div class="temi">
+      <div class="tema rv"><div class="ico">🏡</div><h3>Ti senti a casa</h3><p>Atmosfera rustica e familiare, come nel soggiorno della nonna.</p></div>
+      <div class="tema rv d1"><div class="ico">🍝</div><h3>Primi impeccabili</h3><p>Pasta e patate, genovese e Nerano sono i piatti più lodati.</p></div>
+      <div class="tema rv d2"><div class="ico">🍽️</div><h3>Porzioni generose</h3><p>"Venite a stomaco vuoto" è il consiglio che si ripete di più.</p></div>
+      <div class="tema rv d3"><div class="ico">😊</div><h3>Accoglienza gentile</h3><p>Personale cordiale e attento, prezzi onesti e il digestivo offerto.</p></div>
+      <p class="rec-nota">Sintesi delle recensioni pubbliche. Le recensioni complete si possono mostrare con il widget ufficiale di Google.</p>
+    </div>
+  </div>
+</section>
+
+<section class="orari" id="orari">
+  <div class="wrap grid">
+    <div>
+      <div class="eyebrow rv">Orari</div>
+      <h2 class="rv d1">Quando trovarci.</h2>
+      <div class="stato rv" id="stato"><i></i><span>…</span></div>
+      <div class="tabella rv d1" id="tabella"></div>
+      <p class="mini" style="opacity:1;color:var(--grigio)">Orari da Google, da confermare. Consigliata la prenotazione nel fine settimana.</p>
+    </div>
+    <div class="dove rv d1">
+      <div class="mappa"><span>📍 Via Alberto da Nola 8</span></div>
+      <h3>Dove siamo</h3>
+      <p>Via Alberto da Nola 8, 80035 Nola (NA)<br>Telefono e WhatsApp: 348 375 5778</p>
+      <div class="azioni">
+        <a class="btn btn-rosso" href="https://www.google.com/maps/dir/?api=1&destination=Via%20Alberto%20da%20Nola%208%2C%2080035%20Nola%20NA" target="_blank" rel="noopener">Indicazioni</a>
+        <a class="btn btn-chiaro" href="tel:+393483755778">Chiama</a>
+        <a class="btn btn-chiaro" href="https://glovoapp.com/it/it/nola/stores/a-locanda-e-nonna-amalia-nol" target="_blank" rel="noopener">Ordina su Glovo</a>
+      </div>
+      <p class="mini">Anche a domicilio su Glovo, nelle zone servite.</p>
+    </div>
+  </div>
+</section>
+
+<section class="prenota" id="prenota">
+  <div class="wrap grid">
+    <div>
+      <div class="mano rv">Ve tenimmo 'o posto.</div>
+      <h2 class="rv d1">Prenota il tuo tavolo.</h2>
+      <p class="rv d2">Compila la richiesta: si apre WhatsApp con il messaggio già scritto. Ti rispondiamo noi per confermare il tavolo.</p>
+      <p class="rv d2" style="font-size:.95rem;opacity:.8">Preferisci chiamare? 348 375 5778</p>
+    </div>
+    <form class="card rv d1" id="form" novalidate>
+      <div class="full"><label for="nome">Nome e cognome</label><input id="nome" autocomplete="name" required></div>
+      <div><label for="data">Giorno</label><input type="date" id="data" required></div>
+      <div><label for="ora">Orario</label><select id="ora" required><option value="">Scegli prima il giorno</option></select></div>
+      <div><label for="pers">Persone</label><select id="pers"></select></div>
+      <div><label for="tel">Telefono</label><input id="tel" type="tel" autocomplete="tel" inputmode="tel"></div>
+      <div class="full"><label for="note">Note (allergie, seggiolone, occasione…)</label><textarea id="note"></textarea></div>
+      <div class="full err" id="err" role="alert"></div>
+      <div class="full"><button class="btn btn-rosso" type="submit" style="width:100%;justify-content:center">Invia la richiesta su WhatsApp</button></div>
+      <div class="full esito" id="esito" role="status">
+        <b>Messaggio pronto.</b> Apri WhatsApp e premi invia: la prenotazione è confermata solo quando ti rispondiamo.<br>
+        <a class="btn btn-scuro" id="walink" href="#" target="_blank" rel="noopener">Apri WhatsApp</a>
+      </div>
+      <p class="full" style="font-size:.78rem;color:var(--grigio)">I dati servono solo a gestire la prenotazione.</p>
+    </form>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="grid">
+      <div>
+        <div class="big">Ve aspettammo<br><em>a tavola.</em></div>
+        <p>'A Locanda 'e Nonna Amalia · cucina napoletana di casa</p>
+      </div>
+      <div>
+        <h4>Contatti</h4>
+        <p>Via Alberto da Nola 8<br>80035 Nola (NA)<br><a href="tel:+393483755778">348 375 5778</a></p>
+      </div>
+      <div>
+        <h4>Orari</h4>
+        <p>Mar–Sab 19:00–24:00<br>Domenica 12:00–15:30<br>Lunedì chiuso</p>
+      </div>
+    </div>
+    <div class="legal"><span>© 2026 'A Locanda 'e Nonna Amalia · P.IVA [da inserire]</span><span>Privacy · Cookie</span></div>
+  </div>
+</footer>
+
+<div class="mob" id="mob">
+  <a class="btn btn-scuro" href="tel:+393483755778">Chiama</a>
+  <a class="btn btn-rosso" href="#prenota">Prenota</a>
+</div>
+
+<script>
+(function(){
+  var WA='393483755778';
+  // orari: 0=dom
+  var ORARI={0:[[12,0,15,30]],1:[],2:[[19,0,24,0]],3:[[19,0,24,0]],4:[[19,0,24,0]],5:[[19,0,24,0]],6:[[19,0,24,0]]};
+  var GIORNI=['Domenica','Lunedì','Martedì','Mercoledì','Giovedì','Venerdì','Sabato'];
+  var p2=function(n){return (n<10?'0':'')+n};
+  var fmt=function(s){return s.map(function(f){return p2(f[0]%24===0&&f[0]===24?0:f[0])+':'+p2(f[1])+'–'+p2(f[2]===24?0:f[2])+':'+p2(f[3])}).join(', ').replace(/–00:00/g,'–24:00')};
+
+  // nav
+  var nav=document.getElementById('nav'),mob=document.getElementById('mob');
+  var onScroll=function(){var y=scrollY;nav.classList.toggle('solid',y>40);mob.classList.toggle('on',y>innerHeight*.7);
+    var bg=document.getElementById('herobg');if(bg&&y<innerHeight)bg.style.translate='0 '+(y*.25)+'px';};
+  addEventListener('scroll',onScroll,{passive:true});onScroll();
+  var burger=document.getElementById('burger');
+  burger.onclick=function(){var o=nav.classList.toggle('open');burger.setAttribute('aria-expanded',o)};
+  document.querySelectorAll('#menu-nav a').forEach(function(a){a.onclick=function(){nav.classList.remove('open');burger.setAttribute('aria-expanded',false)}});
+
+  // marquee duplicate
+  var tr=document.getElementById('track');tr.innerHTML+=tr.innerHTML;
+
+  // reveal
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12});
+  document.querySelectorAll('.rv').forEach(function(el){io.observe(el)});
+
+  // tilt
+  var t=document.getElementById('tilt');
+  if(t&&matchMedia('(hover:hover)').matches){t.parentNode.addEventListener('mousemove',function(e){var r=t.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;t.style.transform='rotateY('+(x*18)+'deg) rotateX('+(-y*14)+'deg) scale(1.02)'});t.parentNode.addEventListener('mouseleave',function(){t.style.transform=''})}
+
+  // tabs
+  var tabs=document.querySelectorAll('.tab');
+  tabs.forEach(function(b){b.onclick=function(){tabs.forEach(function(x){x.setAttribute('aria-selected','false')});b.setAttribute('aria-selected','true');
+    document.querySelectorAll('.pannello').forEach(function(p){p.classList.toggle('on',p.id===b.dataset.p)})}});
+
+  // galleria
+  var sc=document.getElementById('scroller');
+  var step=function(d){var f=sc.querySelector('figure');sc.scrollBy({left:d*(f.offsetWidth+16),behavior:'smooth'})};
+  document.getElementById('prev').onclick=function(){step(-1)};document.getElementById('next').onclick=function(){step(1)};
+  sc.tabIndex=0;sc.addEventListener('keydown',function(e){if(e.key==='ArrowRight')step(1);if(e.key==='ArrowLeft')step(-1)});
+
+  // orari
+  var now=new Date(),oggi=now.getDay(),tab=document.getElementById('tabella');
+  [2,3,4,5,6,0,1].forEach(function(g){var r=document.createElement('div');r.className='riga'+(g===oggi?' oggi':'');
+    r.innerHTML='<span class="g">'+GIORNI[g]+'</span>'+(ORARI[g].length?'<span>'+fmt(ORARI[g])+'</span>':'<span class="chiuso">Chiuso</span>');tab.appendChild(r)});
+  var min=now.getHours()*60+now.getMinutes(),aperto=ORARI[oggi].some(function(f){return min>=f[0]*60+f[1]&&min<f[2]*60+f[3]});
+  var st=document.getElementById('stato');st.classList.toggle('aperto',aperto);
+  st.querySelector('span').textContent=aperto?'Aperto adesso':(oggi===1?'Oggi chiuso · riapriamo martedì alle 19:00':'Ora chiuso · '+(ORARI[oggi].length?'oggi '+fmt(ORARI[oggi]):''));
+
+  // form
+  var data=document.getElementById('data'),ora=document.getElementById('ora'),pers=document.getElementById('pers');
+  for(var i=1;i<=20;i++){var o=document.createElement('option');o.value=i;o.textContent=i+(i===1?' persona':' persone');if(i===2)o.selected=true;pers.appendChild(o)}
+  var o2=document.createElement('option');o2.value='più di 20';o2.textContent='Più di 20';pers.appendChild(o2);
+  data.min=now.toISOString().slice(0,10);
+  data.onchange=function(){ora.innerHTML='';var d=new Date(data.value+'T12:00');var s=ORARI[d.getDay()];
+    if(!data.value){ora.innerHTML='<option value="">Scegli prima il giorno</option>';return}
+    if(!s.length){ora.innerHTML='<option value="">Il lunedì siamo chiusi</option>';return}
+    var first=document.createElement('option');first.value='';first.textContent='Scegli l\'orario';ora.appendChild(first);
+    s.forEach(function(f){for(var m=f[0]*60+f[1];m<=f[2]*60+f[3]-90;m+=30){var x=document.createElement('option');x.textContent=x.value=p2(Math.floor(m/60))+':'+p2(m%60);ora.appendChild(x)}})};
+  document.getElementById('form').onsubmit=function(e){e.preventDefault();var err=document.getElementById('err');err.textContent='';
+    var nome=document.getElementById('nome').value.trim();
+    if(!nome){err.textContent='Scrivi il tuo nome.';return}
+    if(!data.value){err.textContent='Scegli il giorno.';return}
+    if(!ora.value){err.textContent=new Date(data.value+'T12:00').getDay()===1?'Il lunedì siamo chiusi: scegli un altro giorno.':'Scegli l\'orario.';return}
+    var d=new Date(data.value+'T12:00'),gg=GIORNI[d.getDay()]+' '+d.toLocaleDateString('it-IT',{day:'numeric',month:'long'});
+    var tel=document.getElementById('tel').value.trim(),note=document.getElementById('note').value.trim();
+    var txt='Buongiorno, vorrei prenotare un tavolo da \'A Locanda \'e Nonna Amalia.\n\nNome: '+nome+'\nGiorno: '+gg+'\nOrario: '+ora.value+'\nPersone: '+pers.value+(tel?'\nTelefono: '+tel:'')+(note?'\nNote: '+note:'')+'\n\nAttendo la vostra conferma, grazie!';
+    var link=document.getElementById('walink');link.href='https://wa.me/'+WA+'?text='+encodeURIComponent(txt);
+    document.getElementById('esito').classList.add('on');link.focus()};
+})();
+</script>
+</body>
+</html>
